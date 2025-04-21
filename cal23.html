@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> simpl calculator</title>
+</head>
+<style>
+   
+   body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60vh;
+    }
+    .calculator {
+         width: 150px;
+        height: 300px; 
+        border: 3px solid black;
+        width: 50vh;
+        border-radius: 20px;
+        padding: 40px;
+        background-color: bisque;
+    }
+    #inputTxt {
+        width: 100px;
+        padding: 10px 29px;
+        
+
+    }
+    #display {
+      height: 30px;
+      font-size: 17px ;
+      font-weight: bold ;
+      text-align: right;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 2px solid black;
+      background: white ;
+      color: black;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 13px;
+      background-color:grey;
+      /* color: #333; */
+      font-size: 24px;
+      font-weight: bolder;
+      border-radius: 16px;
+      border: 3px solid;
+    }
+
+    #btn {
+        
+      padding: 10px 47px;
+    }
+</style>
+
+<body>
+  <div class="calculator">
+    <tr>
+              <td><input type="text" id="display"  /></td>
+                <td>
+                  <button type="button" value="" id="btn" onclick="back()">
+                    x
+                  </button>
+                </td>
+              </tr>
+
+            
+          <div class="buttons">
+            <button class="button" onclick="cal('1')">1</button>
+            <button class="button" onclick="cal('2')">2</button>
+            <button class="button" onclick="cal('3')">3</button>
+            <button class="button" onclick="c('+')">+</button>
+    
+            <button class="button" onclick="cal('4')">4</button>
+            <button class="button" onclick="cal('5')">5</button>
+            <button class="button" onclick="cal('6')">6</button>
+            <button class="button" onclick="c('-')">-</button>
+    
+            <button class="button" onclick="cal('7')">7</button>
+            <button class="button" onclick="cal('8')">8</button>
+            <button class="button" onclick="cal('9')">9</button>
+            <button class="button" onclick="c('*')">*</button>
+    
+            <button class="button" onclick="cal('0')">0</button>
+            <button class="button" onclick="clearDisplay('CE')">CE</button>
+            <button class="button" onclick="result('=')">=</button>
+            <button class="button" onclick="c('/')">/</button>
+          </div>
+
+      </div>
+  </div>
+
+  <script>
+
+    let opt;
+      let display = document.getElementById("display");
+
+      function cal(number) {
+        display.value += number;
+      }
+
+      function c(operator) {
+        display.value += operator;
+        opt = operator;
+      }
+
+      function clearDisplay() {
+        display.value = " ";
+      }
+      function back() {
+        display.value = display.value.back(0, -1);
+      }
+      let output = 0;
+      function calculateValue(val, index, opts) {
+        val = parseInt(val);
+        if (opts == "+") {
+          output += val;
+        } else if (opts == "-") {
+          if (index != 0) {
+            output -= val;
+          } else {
+            output = val; 
+          }
+        } else if (opts == "*") { 
+          output *= val;
+        } else if (opts == "/") {
+          if (index != 0) {
+            output /= val;
+          } else {
+            output = val;
+          }
+        }
+      }
+      
+
+      function result() {
+        let txt = document.getElementById("display");
+        txtVal = txt.value;
+        let array = [];
+
+        if (opt == "+") {
+          array = txtVal.split("+");
+          output = 0;
+        } else if (opt == "-") {
+          array = txtVal.split("-");
+          output = 0;
+        }
+        if (opt == "*") { 
+          array = txtVal.split("*");
+          output = 1;
+        }
+        if (opt == "/") {
+          array = txtVal.split("/");
+          output = 1 ;
+        }
+
+        console.log(array);
+        for (let index = 0; index < array.length; index++) {
+          calculateValue(array[index], index, opt);
+        }
+
+        console.log(output);
+
+        txt.value = output;
+      }
+
+
+
+
+  </script>
+
+</body>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+</html>
